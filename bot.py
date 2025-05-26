@@ -274,13 +274,11 @@ class XosTestnet:
 
             if contract_address == "XOS":
                 balance = web3.eth.get_balance(address)
-                decimals = 18
             else:
                 token_contract = web3.eth.contract(address=web3.to_checksum_address(contract_address), abi=self.ERC20_CONTRACT_ABI)
-                decimals = token_contract.functions.decimals().call({"from": address})
                 balance = token_contract.functions.balanceOf(address).call()
 
-            token_balance = balance / (10 ** decimals)
+            token_balance = balance / (10 ** 18)
 
             return token_balance
         except Exception as e:
