@@ -272,7 +272,7 @@ class XosTestnet:
         try:
             web3 = await self.get_web3_with_check()
 
-            if contract_address == "PHRS":
+            if contract_address == "XOS":
                 balance = web3.eth.get_balance(address)
                 decimals = 18
             else:
@@ -577,6 +577,26 @@ class XosTestnet:
                         print(f"{Fore.RED + Style.BRIGHT}Please enter either 1 or 2.{Style.RESET_ALL}")
                 except ValueError:
                     print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number (1 or 2).{Style.RESET_ALL}")
+
+            while True:
+                try:
+                    wrap_amount = float(input(f"{Fore.YELLOW + Style.BRIGHT}Enter Amount [1 or 0.01 or 0.001, etc in decimals] -> {Style.RESET_ALL}").strip())
+                    if wrap_amount > 0:
+                        break
+                    else:
+                        print(f"{Fore.RED + Style.BRIGHT}Amount must be greater than 0.{Style.RESET_ALL}")
+                except ValueError:
+                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a float or decimal number.{Style.RESET_ALL}")
+
+            while True:
+                try:
+                    swap_count = int(input(f"{Fore.YELLOW + Style.BRIGHT}How Many Times Do You Want To Make a Swap? -> {Style.RESET_ALL}").strip())
+                    if swap_count > 0:
+                        break
+                    else:
+                        print(f"{Fore.RED + Style.BRIGHT}Please enter positive number.{Style.RESET_ALL}")
+                except ValueError:
+                    print(f"{Fore.RED + Style.BRIGHT}Invalid input. Enter a number.{Style.RESET_ALL}")
 
             while True:
                 try:
